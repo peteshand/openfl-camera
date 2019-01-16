@@ -3,8 +3,8 @@
 	"url": "https://github.com/peteshand/openfl-camera",
 	"license": "MIT",
 	"tags": ["camera", "openfl", "air", "electron"],
-	"description": "AIR Camera API for non AIR targets",
-	"version": "1.0.0",
+	"description": "Flash Camera API for html5 target",
+	"version": "1.0.1",
 	"releasenote": "initial release",
 	"contributors": [ "p.j.shand" ],
 	"classPath": "src/"
