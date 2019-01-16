@@ -89,7 +89,6 @@ class Camera extends EventDispatcher
                 if (device.kind == MediaDeviceKind.VIDEO_INPUT){
                     names.push(device.label);
                     devices.set(device.label, device);
-                    Browser.console.log(device);
                 }
             }
             if (callback != null) callback();
@@ -149,7 +148,7 @@ class Camera extends EventDispatcher
 
     public function copyToByteArray(rect:Rectangle, destination:ByteArray):Void
     {
-        var canvas = toCanvas(0, 0, destination.width, destination.height);
+        var canvas = toCanvas(0, 0, Math.floor(rect.width), Math.floor(rect.height));
         var bmd:BitmapData = BitmapData.fromCanvas(canvas, false);
         var b = bmd.getPixels(rect);
         destination.readBytes(b, 0, b.length);
@@ -157,10 +156,10 @@ class Camera extends EventDispatcher
 
     public function copyToVector(rect:Rectangle, destination:Vector<UInt>):Void
     {
-        var canvas = toCanvas(0, 0, destination.width, destination.height);
+        var canvas = toCanvas(0, 0, Math.floor(rect.width), Math.floor(rect.height));
         var bmd:BitmapData = BitmapData.fromCanvas(canvas, false);
         var v = bmd.getVector(rect);
-        for (0 in 0...v.length){
+        for (i in 0...v.length){
             destination.push(v[i]);
         }
     }
