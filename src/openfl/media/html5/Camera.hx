@@ -19,6 +19,7 @@ import openfl.utils.ByteArray;
 import openfl.Vector;
 import openfl.display.BitmapData;
 import openfl.net.NetStream;
+import openfl.net.NetConnection;
 
 import lime.graphics.Image;
 import lime.graphics.ImageBuffer;
@@ -71,7 +72,8 @@ class Camera extends EventDispatcher
 
         mediaDevices.ondevicechange = ondevicechange;
 
-        netStream = new NetStream(null, null);
+
+        netStream = new NetStream(new NetConnection(), null);
         netStream.__video.onloadedmetadata = function(e:Dynamic) {
             netStream.__video.play();
         };
@@ -149,7 +151,7 @@ class Camera extends EventDispatcher
     public function copyToByteArray(rect:Rectangle, destination:ByteArray):Void
     {
         var canvas = toCanvas(0, 0, Math.floor(rect.width), Math.floor(rect.height));
-        var bmd:BitmapData = BitmapData.fromCanvas(canvas, false);
+        var bmd:BitmapData = BitmapData.fromCanvas(canvas, true);
         var b = bmd.getPixels(rect);
         destination.readBytes(b, 0, b.length);
     }
@@ -157,7 +159,7 @@ class Camera extends EventDispatcher
     public function copyToVector(rect:Rectangle, destination:Vector<UInt>):Void
     {
         var canvas = toCanvas(0, 0, Math.floor(rect.width), Math.floor(rect.height));
-        var bmd:BitmapData = BitmapData.fromCanvas(canvas, false);
+        var bmd:BitmapData = BitmapData.fromCanvas(canvas, true);
         var v = bmd.getVector(rect);
         for (i in 0...v.length){
             destination.push(v[i]);
@@ -167,7 +169,7 @@ class Camera extends EventDispatcher
     public function drawToBitmapData(destination:BitmapData):Void
     {
         var canvas = toCanvas(0, 0, destination.width, destination.height);
-        var bmd:BitmapData = BitmapData.fromCanvas(canvas, false);
+        var bmd:BitmapData = BitmapData.fromCanvas(canvas, destination.transparent);
         destination.draw(bmd);
     }
 

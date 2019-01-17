@@ -4,8 +4,8 @@
 	"license": "MIT",
 	"tags": ["camera", "openfl", "air", "electron"],
 	"description": "Flash Camera API for html5 target",
-	"version": "1.0.2",
-	"releasenote": "initial release",
+	"version": "1.0.3",
+	"releasenote": "minor updates",
 	"contributors": [ "p.j.shand" ],
 	"classPath": "src/"
 }
