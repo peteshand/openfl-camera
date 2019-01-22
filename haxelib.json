@@ -2,10 +2,10 @@
 	"name": "openflCamera",
 	"url": "https://github.com/peteshand/openfl-camera",
 	"license": "MIT",
-	"tags": ["camera", "openfl", "air", "electron"],
+	"tags": ["camera", "openfl", "air", "electron", "html5"],
 	"description": "Flash Camera API for html5 target",
-	"version": "1.0.3",
-	"releasenote": "minor updates",
+	"version": "1.0.4",
+	"releasenote": "dir restructure",
 	"contributors": [ "p.j.shand" ],
 	"classPath": "src/"
 }

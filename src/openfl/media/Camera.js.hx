@@ -1,4 +1,4 @@
-package openfl.media.html5;
+package openfl.media;
 
 import haxe.ds.Either;
 import haxe.extern.EitherType;
@@ -62,14 +62,14 @@ class Camera extends EventDispatcher
     static function __init__()
     {
         mediaDevices = Reflect.getProperty(Browser.navigator, 'mediaDevices');
-        findAvailableDevices();
+        findAvailableDevices(true);
     }
 
     private function new(name:String = null)
     {
         super();
         this.name = name;
-
+        
         mediaDevices.ondevicechange = ondevicechange;
 
 
@@ -81,9 +81,9 @@ class Camera extends EventDispatcher
         findAvailableDevices(findDevice);
     }
 
-    static function findAvailableDevices(callback:Void -> Void = null)
+    static function findAvailableDevices(callback:Void -> Void = null, updateNames:Bool=false)
     {
-        names = [];
+        var names:Array<String> = [];
         devices = new Map<String, MediaDeviceInfo>();
 
         mediaDevices.enumerateDevices().then(function(_devices:Array<MediaDeviceInfo>){
@@ -93,6 +93,7 @@ class Camera extends EventDispatcher
                     devices.set(device.label, device);
                 }
             }
+            if (updateNames) Camera.names = names;
             if (callback != null) callback();
         });
     }
