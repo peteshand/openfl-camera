@@ -5,7 +5,7 @@
 	"tags": ["camera", "openfl", "air", "electron", "html5"],
 	"description": "Flash Camera API for html5 target",
 	"version": "1.0.5",
-	"releasenote": "dir restructure",
+	"releasenote": "abort if name is set and not matching device is found",
 	"contributors": [ "p.j.shand" ],
 	"classPath": "src/"
 }
