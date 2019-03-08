@@ -101,7 +101,6 @@ class Camera extends EventDispatcher
     function ondevicechange(e:Dynamic)
     {
         clearActive();
-        //trace("ondevicechange");
         Timer.delay(() -> {
             findAvailableDevices(findDevice);
         }, 100);
@@ -128,7 +127,7 @@ class Camera extends EventDispatcher
             deviceInfo = devices.get(name);
         }
         
-        var constraints:MediaConstraints = { audio: false, video: true }; 
+        var constraints:MediaConstraints = { audio: false, video: true };
         if (deviceInfo != null){
             var trackConstraints:MediaTrackConstraints = {
                 deviceId: { exact: deviceInfo.deviceId },
@@ -137,9 +136,11 @@ class Camera extends EventDispatcher
             if (idealHeight != null) trackConstraints.height = { ideal: idealHeight };
             if (idealFps != null) trackConstraints.frameRate = { ideal: idealFps };
             constraints.video = trackConstraints;
+        } else if (name != null) {
+            trace("not device with name " + name + " found");
+            return;
         }
-        //trace(constraints);
-
+        
         mediaDevices.getUserMedia(constraints).then(function(stream:MediaStream) {
             this.stream = stream;
             netStream.__video.srcObject = stream;
@@ -239,7 +240,6 @@ typedef MediaDeviceInfo =
     var groupId(default, never):String;
     var kind(default, never):MediaDeviceKind;
     var label(default, never):String;
-    
 }
 
 typedef MediaConstraints =
